@@ -9,7 +9,6 @@ angular.module('socialApp', [])
 		})
 			.then(function(response) {
 				social.data = response.data.data;
-				console.log(social.data);
 			}, function (response){
 				error('broken!');
 			});
