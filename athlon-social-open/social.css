@@ -1,0 +1,326 @@
+body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: 
+		linear-gradient(
+	      rgba(0, 0, 0, 0.4), 
+	      rgba(0, 0, 0, 0.4)
+	    ),
+		url(mountainsky.jpg);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	width: 100%;
+	/*height: 100vh;*/
+	background-attachment: fixed;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: white;
+}
+
+header {
+	margin: 0;
+	height: 42px;
+	background: rgba(0,0,0, 1);
+	text-align: center;
+	padding: 0 20px;
+	position: relative;
+	top: 0;
+}
+
+header .title {
+	float: left;
+}
+
+header .logos {
+	float: right;
+}
+
+header .social-logo {
+	margin: 0 0 -45.5px;
+	width: 28px;
+	height: 28px;
+}
+
+header h2 {
+	line-height: 42px;
+	margin: 0;
+	font-size: 19px;
+	color: white;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.sidebar {
+	display: none;
+	position: fixed;
+    top: 0;
+    right: 0;
+    background: rgba(0,0,0, .5);
+    z-index: 9999999;
+    padding: 10px 7px;
+    height: auto;
+    min-height: 42px;
+    width: auto;
+}
+
+.sidebar.scrolled {
+	display: inline-block;
+}
+
+.sidebar .social-logo {
+	margin: 6px 0 0;
+	width: 20px;
+	height: 20px;
+	display: none;
+}
+
+.scrolled .social-logo {
+	display: block;
+}
+
+.social-maintext {
+	min-height: 300px;
+	width: 85%;
+	margin: 50px auto 0; 
+	position: relative;
+	padding: 40px 0;
+	text-align: center;
+}
+
+.social-maintext h4 {
+	margin: 0 50px;
+	font-size: 25px;
+	font-weight: 100;
+}
+
+.social-maintext .top-left,
+.social-maintext .top-right,
+.social-maintext .bottom-left,
+.social-maintext .bottom-right {
+	position: absolute;
+}
+
+.social-maintext .top-left {
+	height: 60px;
+	width: 60px;
+	top: 0;
+	left: 0;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+}
+
+.social-maintext .top-right {
+	height: 60px;
+	width: 60px;
+	top: 0;
+	right: 0;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
+.social-maintext .bottom-left {
+	height: 60px;
+	width: 60px;
+	bottom: 0; 
+	left: 0;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+}
+
+.social-maintext .bottom-right {
+	height: 60px;
+	width: 60px;
+	bottom: 0;
+	right: 0;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
+.social-maintext form {
+	margin-top: 50px;
+	height: auto;
+}
+
+.social-maintext input[type="text"] {
+	height: 45px;
+    width: 200px;
+    border: none;
+    padding: 0 10px;
+    margin: 0 auto;
+    font-size: 25px;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+    display: block;
+    color: white;
+    background: black;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.social-maintext input[type='submit'] {
+	height: 45px;
+    display: block !important;
+    margin: 0 auto -4px;
+    border: none;
+    padding: 0 20px;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    line-height: 49px;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: linear .15s;
+    width: 200px;
+}
+
+.social-maintext input[type='submit']:hover {
+	color: black;
+	background: #ddd;
+}
+
+ul {
+	margin: 50px auto;
+	width: 90%;
+	height: auto;
+	padding: 0;
+	overflow: auto;
+}
+
+li {
+	float: left;
+	width: 20%;
+	padding: 0;
+	margin: 0 0 30px;
+	list-style-type: none;
+	text-align: center;
+}
+
+.social-card {
+	min-height: 335px;
+	width: 80%;
+	margin: 0 auto;
+	background: #000;
+	padding: 0 0 10px;
+
+}
+
+li p {
+	color: white;
+	padding: 0 15px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	transition: linear .2s;
+}
+
+a:hover {
+	color: #ddd;
+}
+
+.img-container {
+	max-height: 200px;
+	overflow: hidden;
+	position: relative;
+	z-index: 0;
+}
+
+.social-photo {
+	max-width: 100%;
+}
+
+.social-logos {
+	z-index: 99999;
+	position: relative;
+}
+
+.social-logo {
+	width: 35px;
+	height: 35px;
+	margin: -17.5px 0 0;
+	border-radius: 100%;
+	border: solid #000 5px;
+}
+
+.hover-cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	display: none;
+	background: rgba(255,255,255, .65);
+	z-index: 10000;
+}
+
+.img-container:hover .hover-cover {
+	display: inline-block;
+}
+
+.highlighter::after {
+	height: 1px;
+	width: 60px;
+	background-color: red;
+	margin: 20px auto;
+	display: block;
+	content: "";
+}
+
+.highlighter-large::after {
+	height: 1px;
+	width: 140px;
+	background-color: red;
+	margin: 20px auto;
+	display: block;
+	content: "";
+}
+
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+	li {
+		width: 33.33333%;
+	}
+}
+
+@media only screen and (max-width: 40em) { 
+	li {
+		width: 100%;
+	}
+
+	.title {
+		width: 100%;
+	}
+
+	.logos {
+		display: none;
+	}
+
+	.social-maintext h4 {
+		font-size: 20px;
+	}
+
+	.social-maintext {
+		padding: 35px 0;
+	}
+
+	.social-maintext input[type='submit'] {
+		display: none !important;
+	}
+
+	.social-maintext form {
+    	margin-top: 25px;
+	}
+
+	.content {
+		padding-bottom: 30px;
+	}
+}
