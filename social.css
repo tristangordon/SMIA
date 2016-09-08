@@ -12,8 +12,6 @@ body, html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-	width: 100%;
-	/*height: 100vh;*/
 	background-attachment: fixed;
 	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
@@ -229,10 +227,12 @@ a:hover {
 	overflow: hidden;
 	position: relative;
 	z-index: 0;
+	height: 200px;
 }
 
 .social-photo {
-	max-width: 100%;
+	max-width: 400px;
+	margin: 0 -50%;
 }
 
 .social-logos {

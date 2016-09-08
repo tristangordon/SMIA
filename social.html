@@ -12,13 +12,13 @@
 				<h2><a href="/">Smia</a></h2>
 			</div>
 			<div class="logos">
-				<img class="social-logo" src="/instalogo.png" alt="instagram">
+				<img class="social-logo" src="/instagramlogo.png" alt="instagram">
 				<img class="social-logo" src="/twitterlogo.png" alt="twitter">
 				<img class="social-logo" src="/facebooklogo.png" alt="facebook">
 			</div>
 		</header>
 		<div class="sidebar">
-			<img class="social-logo" src="/instalogo.png" alt="instagram">
+			<img class="social-logo" src="/instagramlogo.png" alt="instagram">
 			<img class="social-logo" src="/twitterlogo.png" alt="twitter">
 			<img class="social-logo" src="/facebooklogo.png" alt="facebook">
 		</div>
@@ -35,22 +35,22 @@
 				</form>
 			</div>
 			<ul class="social-feed">
-				<li ng-repeat="data in social.data">
+				<li ng-repeat="data in social.data" data-source="{{data.source}}">
 					<div class="social-card">
 						<div class="img-container">
-							<a ng-href="{{data.link}}" target="_blank">
+							<a ng-href="{{data.postLink}}" target="_blank">
 								<div class="hover-cover"></div>							
-								<img class="social-photo" ng-src="{{data.images.standard_resolution.url}}">
+								<img class="social-photo" ng-src="{{data.sourceUrl}}">
 								<!-- <img class="social-photo" src="/stan.png" alt="instagram"> -->
 							</a>
 						</div>
 						<div class="social-logos">
-							<img class="social-logo" src="/instalogo.png">
-							<img class="social-logo" ng-src="{{data.user.profile_picture}}">
+							<img class="social-logo" ng-src="{{data.socialLogo}}">
+							<img class="social-logo" ng-src="{{data.profilePicSource}}">
 						</div>
 						<p class="highlighter">
-							<a ng-href="https://www.instagram.com/{{data.user.username}}" target="_blank">
-								{{data.user.username}}
+							<a ng-href="{{data.profileLink}}" target="_blank">
+								{{data.username}}
 							</a>
 						</p>
 					</div>
