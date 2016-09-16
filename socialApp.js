@@ -16,7 +16,7 @@ function sortByCreatedTime (socialArray) {
 var socialCards   = [];
 
 function normalizeObjects (data, apiSource) {
-		if (apiSource == 'instagram') {
+	if (apiSource == 'instagram') {
 		for (i = 0; i < data.length; i++) {
 			var socialCard = {
 				postLink: data[i].link,
@@ -88,6 +88,35 @@ angular.module('socialApp', [])
 
 		$http({
 			method: 'GET',
+			url: endpoint3
+		})
+			.then(function(response) {
+				var dataThree = response.data.statuses,
+				apiSource   = 'twitter';
+				
+				//take data from object and create uniform object so that our markup
+				//works with photos from all api endpoints
+				normalizeObjects(dataThree, apiSource);
+
+				//use count variable to signal that request is done
+				count += 1;
+				return count;
+
+			}, function (response){
+				error('broken!' + response);
+			}).then(function (){
+				// check to see if all requests are finished before sorting
+				//and sending data to view
+				if (count <= 2) {
+					
+				}
+				if (count >= 2) {
+					social.data = sortByCreatedTime(socialCards);
+				}
+			});
+
+		$http({
+			method: 'GET',
 			url: endpoint
 		})
 			.then(function(response) {
@@ -144,33 +173,83 @@ angular.module('socialApp', [])
 				}
 			});
 
-		$http({
+		social.twitterOnly = function () {
+
+			$http({
 			method: 'GET',
 			url: endpoint3
-		})
-			.then(function(response) {
-				var dataThree = response.data.statuses,
-				apiSource   = 'twitter';
-				
-				//take data from object and create uniform object so that our markup
-				//works with photos from all api endpoints
-				normalizeObjects(dataThree, apiSource);
-
-				//use count variable to signal that request is done
-				count += 1;
-				return count;
-
-			}, function (response){
-				error('broken!' + response);
-			}).then(function (){
-				// check to see if all requests are finished before sorting
-				//and sending data to view
-				if (count <= 2) {
+			})
+				.then(function(response) {
+					var dataThree = response.data.statuses,
+					apiSource   = 'twitter';
 					
-				}
-				if (count >= 2) {
+					//take data from object and create uniform object so that our markup
+					//works with photos from all api endpoints
+					socialCards = [];
+					normalizeObjects(dataThree, apiSource);
+
+					//use count variable to signal that request is done
+					count += 1;
+					return count;
+
+				}, function (response){
+					error('broken!' + response);
+				}).then(function (){
+					// check to see if all requests are finished before sorting
+					//and sending data to view
+					
 					social.data = sortByCreatedTime(socialCards);
-				}
-			});
-	console.log(socialCards);
+					
+				});
+		}
+
+		social.instagramOnly = function () {
+
+			$http({
+				method: 'GET',
+				url: endpoint
+			})
+				.then(function(response) {
+					var dataOne = response.data.data,
+					apiSource = 'instagram';
+
+					//take data from object and create uniform object so that our markup
+					//works with photos from all api endpoints
+					socialCards = [];
+					normalizeObjects(dataOne, apiSource);
+
+				}, function (response){
+					error('broken!' + response);
+				}).then(function (){
+					// check to see if all requests are finished before sorting
+					//and sending data to view
+					
+					social.data = sortByCreatedTime(socialCards);	
+				});
+		}
+
+		social.facebookOnly = function () {
+
+			$http({
+				method: 'GET',
+				url: endpoint2
+			})
+				.then(function(response) {
+					var dataTwo = response.data.data,
+					apiSource   = 'facebook';
+
+					//take data from object and create uniform object so that our markup
+					//works with photos from all api endpoints
+					socialCards = [];
+					normalizeObjects(dataTwo, apiSource);
+
+				}, function (response){
+					error('broken!' + response);
+				}).then(function (){
+					// check to see if all requests are finished before sorting
+					//and sending data to view
+						
+					social.data = sortByCreatedTime(socialCards);	
+				});
+		}
 	});

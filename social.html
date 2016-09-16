@@ -6,23 +6,23 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
-	<body>
+	<body  ng-controller="SocialPhotoController as social">
 		<header>
 			<div class="title">
 				<h2><a href="/">Smia</a></h2>
 			</div>
 			<div class="logos">
-				<img class="social-logo" src="/instagramlogo.png" alt="instagram">
-				<img class="social-logo" src="/twitterlogo.png" alt="twitter">
-				<img class="social-logo" src="/facebooklogo.png" alt="facebook">
+				<a ng-href='#instagram' ng-click='social.instagramOnly()'><img class="social-logo" src="/instagramlogo.png" alt="instagram"></a>
+				<a ng-href='#twitter' ng-click='social.twitterOnly()'><img class="social-logo" src="/twitterlogo.png" alt="twitter"></a>
+				<a ng-href='#facebook' ng-click='social.facebookOnly()'><img class="social-logo" src="/facebooklogo.png" alt="facebook"></a>
 			</div>
 		</header>
 		<div class="sidebar">
-			<img class="social-logo" src="/instagramlogo.png" alt="instagram">
-			<img class="social-logo" src="/twitterlogo.png" alt="twitter">
-			<img class="social-logo" src="/facebooklogo.png" alt="facebook">
+			<a ng-href='#instagram' ng-click='social.instagramOnly()'><img class="social-logo" src="/instagramlogo.png" alt="instagram"></a>
+			<a ng-href='#twitter' ng-click='social.twitterOnly()'><img class="social-logo" src="/twitterlogo.png" alt="twitter"></a>
+			<a ng-href='#facebook' ng-click='social.facebookOnly()'><img class="social-logo" src="/facebooklogo.png" alt="facebook"></a>
 		</div>
-		<div class="content" ng-controller="SocialPhotoController as social">
+		<div class="content">
 			<div class="social-maintext">
 				<div class="top-left"></div>
 				<div class="top-right"></div>

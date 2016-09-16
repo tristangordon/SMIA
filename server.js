@@ -8,7 +8,8 @@ var Cookies      = require('cookies');
 var cookieParser = require('cookie-parser');
 var crypto       = require('crypto');
 var Twitter      = require('twitter');
-var twitterClient;
+var counter      = 0,
+twitterClient;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -75,12 +76,29 @@ var twitt = function () {
             bearer_token: credentialObj
         });
 
-        if (twitterClient != null) return twitterClient;
+        if (twitterClient != null) { 
+            counter += 1;
+            return twitterClient;
+        }
     });
 
-    if (twitterClient != null) return twitterClient;
 }
+twitt();
  
+
+apiRoutes.get('/getTwitter', function(req, res) {
+    var hashtag = (req.cookies['hashtag']) ? (req.cookies['hashtag']).replace(/^.*#/, '') : 'athlon';
+ 
+    console.log(twitterClient);
+    console.log('counter value is: ' + counter);
+    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag + ' filter:images'}, function(error, tweets, response) {
+      //if(error) throw error;
+      console.log(response.body);
+      res.send(response.body);
+      //console.log(response);
+    });
+});
+
 // instagram object request
 apiRoutes.get('/getInsta', function(req, res) {
 
@@ -92,7 +110,7 @@ var accessToken = '3678064701.99fdca0.ef182a248bc343b38e27912405be7945',
     endpoint    = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + accessToken + '&access_token='+ accessToken;
     request(endpoint, function(err, response, body){
         res.send(body);
-        console.log(body);
+        //console.log(body);
     });
 });
 
@@ -104,21 +122,8 @@ var accessToken = 'EAASbZB8ZAYlu0BAHO2t9U0X7HKmkOGA5GMBE0E9iZCk2Mc2dQoRSeB3tnCkj
 
     request(endpoint, function(err, response, body) {
         res.send(body);
-        console.log(body);
+        //console.log(body);
     });  
-});
-
-apiRoutes.get('/getTwitter', function(req, res) {
-    var hashtag = (req.cookies['hashtag']) ? (req.cookies['hashtag']).replace(/^.*#/, '') : 'athlon';
-
-    twitt();  
-
-    if (twitterClient) twitterClient.get('search/tweets', {q: '#' + hashtag + ' filter:images'}, function(error, tweets, response) {
-      //if(error) throw error;
-      console.log(response.body);
-      res.send(response.body);
-      //console.log(response);
-    });
 });
  
 // will eventually connect the api routes under /sima-api
