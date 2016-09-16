@@ -6,8 +6,9 @@ var port         = process.env.PORT || 8080;
 var request      = require('request');
 var Cookies      = require('cookies');
 var cookieParser = require('cookie-parser');
-
-
+var crypto       = require('crypto');
+var Twitter      = require('twitter');
+var twitterClient;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -39,6 +40,46 @@ apiRoutes.post('/setHash', function(req, res){
     res.redirect('/');
 
 });
+
+
+var randomString = function(length) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+}
+
+var twitt = function () {
+    var endpoint   = 'https://api.twitter.com/oauth2/token',
+    consumerKey    = 'UL2uKlr1w9BGZeQB2QADsbaUo',
+    consumerSecret = '5sSoXAOenQJ8aru7sXbijL2QGp7Ix4SKGGyVrmI8MrLEvGCQFx',
+    credentials    = new Buffer(consumerKey + ':' + consumerSecret).toString('base64'),
+    credentialObj;
+    request({
+        url: endpoint,
+        method: 'POST',
+        headers: {
+            "Authorization": "Basic " + credentials,
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" 
+        },
+        body: "grant_type=client_credentials"
+
+    }, function(err, response, body){
+        credentialObj = JSON.parse(response.body);
+        credentialObj = credentialObj.access_token;
+        twitterClient = new Twitter({
+            consumer_key: 'UL2uKlr1w9BGZeQB2QADsbaUo',
+            consumer_secret: '5sSoXAOenQJ8aru7sXbijL2QGp7Ix4SKGGyVrmI8MrLEvGCQFx',
+            bearer_token: credentialObj
+        });
+
+        if (twitterClient != null) return twitterClient;
+    });
+
+    if (twitterClient != null) return twitterClient;
+}
  
 // instagram object request
 apiRoutes.get('/getInsta', function(req, res) {
@@ -65,6 +106,19 @@ var accessToken = 'EAASbZB8ZAYlu0BAHO2t9U0X7HKmkOGA5GMBE0E9iZCk2Mc2dQoRSeB3tnCkj
         res.send(body);
         console.log(body);
     });  
+});
+
+apiRoutes.get('/getTwitter', function(req, res) {
+    var hashtag = (req.cookies['hashtag']) ? (req.cookies['hashtag']).replace(/^.*#/, '') : 'athlon';
+
+    twitt();  
+
+    if (twitterClient) twitterClient.get('search/tweets', {q: '#' + hashtag + ' filter:images'}, function(error, tweets, response) {
+      //if(error) throw error;
+      console.log(response.body);
+      res.send(response.body);
+      //console.log(response);
+    });
 });
  
 // will eventually connect the api routes under /sima-api
