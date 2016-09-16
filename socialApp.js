@@ -60,9 +60,9 @@ function normalizeObjects (data, apiSource) {
 		for (i = 0; i < data.length; i++) {
 			var socialCard = {
 				postLink: data[i].entities.media[0].url,
-				sourceUrl: data[i].entities.media[0].media_url,
+				sourceUrl: data[i].entities.media[0].media_url_https,
 				socialLogo: 'twitterlogo.png',
-				profilePicSource: data[i].user.profile_image_url,
+				profilePicSource: data[i].user.profile_image_url_https,
 				profileLink:'https://www.twitter.com/' + data[i].user.id_str,
 				username: data[i].user.screen_name,
 				source: apiSource,
