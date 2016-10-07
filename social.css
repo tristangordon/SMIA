@@ -324,4 +324,8 @@ input, textarea {
 	.sidebar {
 		display: inline-block;
 	}
+
+	.sidebar .social-logo {
+                margin-bottom: 13px;
+ 	 }
 }
