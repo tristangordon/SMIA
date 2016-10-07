@@ -13,6 +13,21 @@ function sortByCreatedTime (socialArray) {
 	return socialArray;
 }
 
+var objCounter = 1,
+count = 0;
+
+function numberObjects (array) {
+	if (count == 3) {
+		for (i = 0; i < array.length; i++) {
+			array[i].countId = objCounter;
+
+			objCounter++;
+		}
+
+		return array;
+	}
+}
+ 
 var socialCards   = [];
 
 function normalizeObjects (data, apiSource) {
@@ -59,8 +74,8 @@ function normalizeObjects (data, apiSource) {
 	if (apiSource =='twitter') {
 		for (i = 0; i < data.length; i++) {
 			var socialCard = {
-				postLink: data[i].entities.media[0].url,
-				sourceUrl: data[i].entities.media[0].media_url_https,
+				postLink: data[i].entities.media[0].expanded_url,
+				sourceUrl: data[i].entities.media[0].media_url,
 				socialLogo: 'twitterlogo.png',
 				profilePicSource: data[i].user.profile_image_url_https,
 				profileLink:'https://www.twitter.com/' + data[i].user.id_str,
@@ -72,7 +87,6 @@ function normalizeObjects (data, apiSource) {
 			socialCards.push(socialCard);
 
 		}
-
 		return socialCards;
 	}
 
@@ -83,8 +97,7 @@ angular.module('socialApp', [])
 		var social 	  = this,
 		endpoint      = '/getInsta',
 		endpoint2     = '/getFacebook',
-		endpoint3     = '/getTwitter',
-		count	  	  = 0;
+		endpoint3     = '/getTwitter';
 
 		$http({
 			method: 'GET',
@@ -111,7 +124,9 @@ angular.module('socialApp', [])
 					
 				}
 				if (count >= 2) {
-					social.data = sortByCreatedTime(socialCards);
+					socialCards = sortByCreatedTime(socialCards)
+					social.data = numberObjects(socialCards);
+					console.log(socialCards);
 				}
 			});
 
@@ -140,7 +155,8 @@ angular.module('socialApp', [])
 					
 				}
 				if (count >= 2) {
-					social.data = sortByCreatedTime(socialCards);
+					socialCards = sortByCreatedTime(socialCards)
+					social.data = numberObjects(socialCards);
 				}
 			});
 
@@ -169,7 +185,8 @@ angular.module('socialApp', [])
 					
 				}
 				if (count >= 2) {
-					social.data = sortByCreatedTime(socialCards);
+					socialCards = sortByCreatedTime(socialCards)
+					social.data = numberObjects(socialCards);
 				}
 			});
 
@@ -224,7 +241,7 @@ angular.module('socialApp', [])
 					// check to see if all requests are finished before sorting
 					//and sending data to view
 					
-					social.data = sortByCreatedTime(socialCards);	
+					social.data = sortByCreatedTime(socialCards);		
 				});
 		}
 
@@ -249,7 +266,10 @@ angular.module('socialApp', [])
 					// check to see if all requests are finished before sorting
 					//and sending data to view
 						
-					social.data = sortByCreatedTime(socialCards);	
+					social.data = sortByCreatedTime(socialCards);				
 				});
 		}
+
+
+		console.log('Contact me at tristan@gordon.com');
 	});

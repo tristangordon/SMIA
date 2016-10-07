@@ -1,6 +1,6 @@
 body, html {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	margin: 0;
 	background: 
 		linear-gradient(
@@ -19,10 +19,11 @@ body, html {
 	color: white;
 }
 
+
 header {
 	margin: 0;
 	height: 42px;
-	background: rgba(0,0,0, 1);
+	background: #eee;
 	text-align: center;
 	padding: 0 20px;
 	position: relative;
@@ -47,7 +48,6 @@ header h2 {
 	line-height: 42px;
 	margin: 0;
 	font-size: 19px;
-	color: white;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight: 300;
 	text-transform: uppercase;
@@ -57,13 +57,13 @@ header h2 {
 	display: none;
 	position: fixed;
     top: 0;
-    right: 0;
-    background: rgba(0,0,0, .5);
+    right: .5%;
     z-index: 9999999;
     padding: 10px 7px;
     height: auto;
     min-height: 42px;
     width: auto;
+    margin-right: 4px;
 }
 
 .sidebar.scrolled {
@@ -169,7 +169,7 @@ header h2 {
     font-size: 18px;
     font-family: 'Raleway', sans-serif;
     line-height: 49px;
-    background: white;
+    background: #eee;
     color: black;
     cursor: pointer;
     transition: linear .15s;
@@ -202,7 +202,7 @@ li {
 	min-height: 335px;
 	width: 80%;
 	margin: 0 auto;
-	background: #000;
+	background: #eee;
 	padding: 0 0 10px;
 
 }
@@ -214,8 +214,9 @@ li p {
 
 a {
 	text-decoration: none;
-	color: white;
+	color: black;
 	transition: linear .2s;
+	cursor: pointer;
 }
 
 a:hover {
@@ -245,7 +246,7 @@ a:hover {
 	height: 35px;
 	margin: -17.5px 0 0;
 	border-radius: 100%;
-	border: solid #000 5px;
+	border: solid #eee 4px;
 }
 
 .hover-cover {
@@ -296,10 +297,6 @@ input, textarea {
 		width: 100%;
 	}
 
-	.title {
-		width: 100%;
-	}
-
 	.logos {
 		display: none;
 	}
@@ -322,5 +319,9 @@ input, textarea {
 
 	.content {
 		padding-bottom: 30px;
+	}
+
+	.sidebar {
+		display: inline-block;
 	}
 }

@@ -68,7 +68,9 @@ var twitt = function () {
         body: "grant_type=client_credentials"
 
     }, function(err, response, body){
-        credentialObj = JSON.parse(response.body);
+        if (err) throw err;
+
+        credentialObj = JSON.parse(body);
         credentialObj = credentialObj.access_token;
         twitterClient = new Twitter({
             consumer_key: 'UL2uKlr1w9BGZeQB2QADsbaUo',
@@ -89,13 +91,12 @@ twitt();
 apiRoutes.get('/getTwitter', function(req, res) {
     var hashtag = (req.cookies['hashtag']) ? (req.cookies['hashtag']).replace(/^.*#/, '') : 'athlon';
  
-    console.log(twitterClient);
-    console.log('counter value is: ' + counter);
-    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag + ' filter:images'}, function(error, tweets, response) {
+    //console.log(twitterClient);
+    //console.log('counter value is: ' + counter);
+    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag +' filter:twimg'}, function(error, tweets, response) {
       //if(error) throw error;
-      console.log(response.body);
+      //console.log(response.body);
       res.send(response.body);
-      //console.log(response);
     });
 });
 
@@ -107,10 +108,9 @@ var hashtag     = (req.cookies['hashtag']) ? (req.cookies['hashtag']).replace(/^
 
 var accessToken = '3678064701.99fdca0.ef182a248bc343b38e27912405be7945',
     tag         = hashtag,
-    endpoint    = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + accessToken + '&access_token='+ accessToken;
+    endpoint    = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + accessToken + '&access_token='+ accessToken + '&count=33';
     request(endpoint, function(err, response, body){
         res.send(body);
-        //console.log(body);
     });
 });
 
