@@ -37,7 +37,7 @@ function normalizeObjects (data, apiSource) {
 				postLink: data[i].link,
 				sourceUrl: data[i].images.standard_resolution.url,
 				socialLogo: 'instagramlogo.png',
-				profilePicSource: data[i].user.profile_picture,
+				profilePicSource: (data[i].user.profile_picture).replace(/^http:\/\//i, 'https://'),
 				profileLink:'https://www.instagram.com/' + data[i].user.username,
 				username: data[i].user.username,
 				source: apiSource,
@@ -47,7 +47,7 @@ function normalizeObjects (data, apiSource) {
 			socialCards.push(socialCard);
 
 		}
-
+		console.log(socialCards);
 		return socialCards;
 	}
 

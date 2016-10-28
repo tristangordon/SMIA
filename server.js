@@ -110,6 +110,7 @@ var accessToken = '3678064701.99fdca0.ef182a248bc343b38e27912405be7945',
     tag         = hashtag,
     endpoint    = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + accessToken + '&access_token='+ accessToken + '&count=33';
     request(endpoint, function(err, response, body){
+        console.log(body);
         res.send(body);
     });
 });
