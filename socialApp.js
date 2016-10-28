@@ -75,7 +75,7 @@ function normalizeObjects (data, apiSource) {
 		for (i = 0; i < data.length; i++) {
 			var socialCard = {
 				postLink: data[i].entities.media[0].expanded_url,
-				sourceUrl: data[i].entities.media[0].media_url,
+				sourceUrl: data[i].entities.media[0].media_url_https,
 				socialLogo: 'twitterlogo.png',
 				profilePicSource: data[i].user.profile_image_url_https,
 				profileLink:'https://www.twitter.com/' + data[i].user.id_str,
@@ -126,7 +126,6 @@ angular.module('socialApp', [])
 				if (count >= 2) {
 					socialCards = sortByCreatedTime(socialCards)
 					social.data = numberObjects(socialCards);
-					console.log(socialCards);
 				}
 			});
 
@@ -216,7 +215,7 @@ angular.module('socialApp', [])
 					//and sending data to view
 					
 					social.data = sortByCreatedTime(socialCards);
-					
+					console.log(social.data);
 				});
 		}
 
@@ -269,7 +268,6 @@ angular.module('socialApp', [])
 					social.data = sortByCreatedTime(socialCards);				
 				});
 		}
-
-
+		
 		console.log('Contact me at tristan@gordon.com');
 	});
