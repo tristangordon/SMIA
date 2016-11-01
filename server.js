@@ -93,7 +93,7 @@ apiRoutes.get('/getTwitter', function(req, res) {
  
     //console.log(twitterClient);
     //console.log('counter value is: ' + counter);
-    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag +' filter:images'}, function(error, tweets, response) {
+    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag +' filter:twimg'}, function(error, tweets, response) {
       //if(error) throw error;
       console.log(response.body);
       res.send(response.body);
