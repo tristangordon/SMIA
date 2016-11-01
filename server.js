@@ -93,9 +93,9 @@ apiRoutes.get('/getTwitter', function(req, res) {
  
     //console.log(twitterClient);
     //console.log('counter value is: ' + counter);
-    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag +' filter:twimg'}, function(error, tweets, response) {
+    if (counter > 0) twitterClient.get('search/tweets', {q: '#' + hashtag +' filter:images'}, function(error, tweets, response) {
       //if(error) throw error;
-      //console.log(response.body);
+      console.log(response.body);
       res.send(response.body);
     });
 });
@@ -110,7 +110,7 @@ var accessToken = '3678064701.99fdca0.ef182a248bc343b38e27912405be7945',
     tag         = hashtag,
     endpoint    = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + accessToken + '&access_token='+ accessToken + '&count=33';
     request(endpoint, function(err, response, body){
-        console.log(body);
+        //console.log(body);
         res.send(body);
     });
 });

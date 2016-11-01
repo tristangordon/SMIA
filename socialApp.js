@@ -73,18 +73,23 @@ function normalizeObjects (data, apiSource) {
 
 	if (apiSource =='twitter') {
 		for (i = 0; i < data.length; i++) {
-			var socialCard = {
-				postLink: data[i].entities.media[0].expanded_url,
-				sourceUrl: data[i].entities.media[0].media_url_https,
-				socialLogo: 'twitterlogo.png',
-				profilePicSource: data[i].user.profile_image_url_https,
-				profileLink:'https://www.twitter.com/' + data[i].user.id_str,
-				username: data[i].user.screen_name,
-				source: apiSource,
-				created: convertDate(data[i].created_at)
-			}
+			if(!data[i].entities.media) {
 
-			socialCards.push(socialCard);
+			}
+			else {
+				var socialCard = {
+					postLink: data[i].entities.media[0].expanded_url,
+					sourceUrl: data[i].entities.media[0].media_url_https,
+					socialLogo: 'twitterlogo.png',
+					profilePicSource: data[i].user.profile_image_url_https,
+					profileLink:'https://www.twitter.com/' + data[i].user.id_str,
+					username: data[i].user.screen_name,
+					source: apiSource,
+					created: convertDate(data[i].created_at)
+				}	
+
+				socialCards.push(socialCard);
+			}
 
 		}
 		return socialCards;
